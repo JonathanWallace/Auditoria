@@ -1,0 +1,37 @@
+{% block content %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand bg-dark border-bottom border-body" >
+    <div class="container">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav fs-4">
+                <button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2 active" aria-current="page" href="#">AUDITORIAS</button>
+                <button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2" data-bs-toggle="modal" data-bs-target="#modal_nova_auditoria">NOVA AUDITORIA</button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Modal Nova Auditoria -->
+<div class="modal fade" id="modal_nova_auditoria" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog text-center">
+    <div class="modal-content bg-dark text-light" data-bs-theme="dark">
+      <form class="text-center text-light" action="{% url 'index' %}" method="POST">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3" id="modalLabel">Nova auditoria</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          {% csrf_token %} 
+          {% for field in form.visible_fields %}
+            <label for="{{ field.id_for_label }}" class="form-label fs-4">{{ field.label }}</label>
+            {{ field}}
+          {% endfor %}
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Inicar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
