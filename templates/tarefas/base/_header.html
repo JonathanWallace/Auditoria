@@ -4,8 +4,8 @@
     <div class="container">
         <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div class="navbar-nav fs-4">
-                <button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2 active" aria-current="page" href="#">AUDITORIAS</button>
                 <button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2" data-bs-toggle="modal" data-bs-target="#modal_nova_auditoria">NOVA AUDITORIA</button>
+                <a href="{% url 'excel' %}"><button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2">GERAR EXCEL</button></a>             
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 <div class="modal fade" id="modal_nova_auditoria" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog text-center">
     <div class="modal-content bg-dark text-light" data-bs-theme="dark">
-      <form class="text-center text-light" action="{% url 'index' %}" method="POST">
+      <form class="text-center text-light" action="{% url 'nova' %}" method="POST">
       <div class="modal-header">
         <h1 class="modal-title fs-3" id="modalLabel">Nova auditoria</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

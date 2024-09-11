@@ -4,7 +4,7 @@ from apps.tarefas.models import Auditoria
 class AuditoriaForms(forms.ModelForm):
     class Meta:
         model = Auditoria
-        exclude = []
+        exclude = ['auditoria_status']
 
         labels = {
             'auditoria_nome':'Nome',

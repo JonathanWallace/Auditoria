@@ -1,4 +1,81 @@
 {% extends 'tarefas/base/_base.html' %}
 {% block content %}
-    <h1>Nova Auditoria</h1>
+<nav class="navbar navbar-expand bg-dark border-bottom border-body" >
+    <div class="container">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav fs-4">
+                <a href="{% url 'index' %}"><button type="button" class="nav-link border border-primary border-2 text-light rounded-4 mx-2 active">AUDITORIAS</button></a>            
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container justify-content-center text-center">
+    <h2 class="justify-content-center">Auditoria: {{ auditoria.auditoria_nome }}</h2>
+    <h4 class="justify-content-center">Data: {{auditoria.auditoria_data|date:"d/m/Y" }}</h4>
+    <div class="accordion accordion-flush" id="accordionFlush" data-bs-theme="dark">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Interno
+                </button>
+            </h2>
+            <div id="flush-collapse" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+                <div class="accordion-body">
+
+                    <div class="list-group text-center">
+                        {% for tarefa in tarefas %}
+                        <button id="btn-interno-{{ forloop.counter }}" data-id="{{auditoria.id}}" type="button" class="list-group-item list-group-item-action btn-add-tarefa">{{tarefa}}</button>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion accordion-flush" id="accordionFlush2" data-bs-theme="dark">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Externo
+                </button>
+            </h2>
+            <div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionFlush2">
+                <div class="accordion-body">
+
+                    <div class="list-group text-center">
+                        {% for tarefa in tarefas %}
+                        <button id="btn-adicionar{{ forloop.counter }}" data-id="{{auditoria.id}}" type="button" class="list-group-item list-group-item-action btn-add-tarefa">{{tarefa}}</button>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion accordion-flush mb-2" id="accordionFlush3" data-bs-theme="dark">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Outros
+                </button>
+            </h2>
+            <div id="flush-collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionFlush3">
+                <div class="accordion-body">
+
+                    <div class="list-group text-center">
+                        {% for tarefa in tarefas %}
+                        <button id="btn-adicionar{{ forloop.counter }}" data-id="{{auditoria.id}}" type="button" class="list-group-item list-group-item-action btn-add-tarefa">{{tarefa}}</button>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'finalizar' auditoria.id %}"><button type="button" class="btn btn-primary fs-2">Finalizar Auditoria</button></a>
+</div>
 {% endblock %}

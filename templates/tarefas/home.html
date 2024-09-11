@@ -1,25 +1,29 @@
 {% extends 'tarefas/base/_base.html' %}
 {% block content %}
 {% include 'tarefas/base/_header.html' %}
-<div class="container">
-    <div class="accordion accordion-flush" id="accordionFlush" data-bs-theme="dark">
+<div class="container text-center">
+    <div class="accordion accordion-flush mb-2" id="accordionFlush" data-bs-theme="dark">
         {% for auditoria in auditorias %}
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapse{{auditoria.id}}" aria-expanded="false"
-                    aria-controls="flush-collapseOne">
-                    {{ auditoria.auditoria_nome }}
-                </button>
-            </h2>
-            <div id="flush-collapse{{auditoria.id}}" class="accordion-collapse collapse"
-                data-bs-parent="#accordionFlush">
-                <div class="accordion-body">
-                    
+            <div class="accordion-item border rounded-2 my-1">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed border rounded-2" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse{{auditoria.id}}" aria-expanded="false"
+                        aria-controls="flush-collapseOne">
+                        {{ auditoria.auditoria_nome }}
+                    </button>
+                </h2>
+                <div id="flush-collapse{{auditoria.id}}" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionFlush">
+                    <div class="accordion-body">
+                        {% for tarefa in tarefas %}
+                            {% if tarefa.tarefa_auditoria.id == auditoria.id %}
+                                <h4 class="border-bottom">{{tarefa.tarefa_realizada}} realizada às {{tarefa.tarefa_data|time:"H:i:s" }}</h4>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
-    </div>
+        {% endfor %}        
+    </div>  
 </div>
 {% endblock %}
